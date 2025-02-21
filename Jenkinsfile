@@ -30,6 +30,14 @@ pipeline {
             }
         }
         }
+        stage('Docker Build'){
+            steps{
+                sh """
+                docker build -t yashdwar/backend:${appVersion} .
+                docker images
+                """
+            }
+        }
     }
 
 post{
