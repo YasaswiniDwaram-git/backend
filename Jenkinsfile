@@ -16,21 +16,10 @@ pipeline {
             steps {
                 script{
                     def packageJson = readJSON file: 'package.json'
-                    app Version= packageJson.version
+                    appVersion= packageJson.version
                     echo "APP Version is : ${appVersion}"
                 }
                 
-            }
-        }
-        stage('Deploy') {
-            when {
-                 expression { 
-                    env.GIT_BRANCH == 'origin/main'
-                }
-            steps {
-                echo 'Production has started'
-                 }
-
             }
         }
         stage('Test1'){
