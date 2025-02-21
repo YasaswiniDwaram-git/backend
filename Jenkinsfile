@@ -15,31 +15,17 @@ pipeline {
         stage('Read Version') {
             steps {
                 script{
-                    def packageJson = readJSON file:
-                    'package.json'
-                    app Version= packageJson.Version
-                    echo 'APP Version is : ${appVersion}'
+                    def packageJson = readJSON file: 'package.json'
+                    app Version= packageJson.version
+                    echo "APP Version is : ${appVersion}"
                 }
                 
             }
         }
-        // stage('approval'){
-		// 	input {
-        //         message "Should we continue?"
-        //         ok "Yes, we should."
-        //         submitter "alice,bob"
-        //         parameters {
-        //             string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-        //         }
-        //     }
-        //     steps {
-        //         echo "Hello,${PERSON},nice to meet you."
-        //     }
-        // }
         stage('Deploy') {
             when {
                  expression { 
-                    env.GIT_BRANCH = 'origin/main'
+                    env.GIT_BRANCH == 'origin/main'
                 }
             steps {
                 echo 'Production has started'
