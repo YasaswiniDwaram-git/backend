@@ -8,6 +8,7 @@ pipeline {
     }
     environment{
         DEBUG = 'true'
+        appVersion= ''
     }
     
     stages {
