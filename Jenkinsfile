@@ -37,11 +37,12 @@ pipeline {
         // }
         stage('Deploy') {
             when {
-                 branch 'production'
+                 expression { env.GIT_BRANCH = 'origin/main'
                 }
             steps {
                 echo 'Production has started'
             }
+
             }
         stage('Test1'){
             steps{
@@ -61,6 +62,7 @@ post{
 }
     failure{
         echo 'This runs upon failure'
+}
 }
 }
 }
