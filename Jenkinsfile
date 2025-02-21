@@ -22,11 +22,13 @@ pipeline {
                 
             }
         }
-        stage('Test1'){
+        stage('Install Dependencies'){
             steps{
-                echo 'This is test'
-                sh 'sleep 8'
+                script{
+                npm install
+                echo 'dependencies installed'
             }
+        }
         }
     }
 
